@@ -11,7 +11,9 @@ load_dotenv()
 
 
 async def main():
-    async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
+    async with streamablehttp_client(
+        "http://localhost:8000/mcp", headers={"authorization": "Bearer supersecret"}
+    ) as (read, write, _):
         async with ClientSession(read, write) as session:
             # Initialize the connection
             await session.initialize()
